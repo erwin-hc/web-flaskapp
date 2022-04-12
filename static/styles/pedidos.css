@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@200;400;600;900&display=swap');
+/*font-family: 'M PLUS 1', sans-serif;*/
+
+:root {
+--clr_azul_bg: #17a2b8;
+--clr_verde_bg: #28a745 ;
+--clr_vermelho_bg: #dc3545;
+
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #303030;
+  font-family: 'M PLUS 1', sans-serif;
+  background-color: #d1d1d1;
+  border-collapse: collapse;
+}
+section {
+  margin: 2.5%;
+  margin-top: 80px;
+}
+
+.search {
+    width: 100%;
+    height: 60px;
+    background-color: #303030;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /*border-bottom: solid 1px rgba(255,255,255,0.5);*/
+
+}
+
+#inputSearch {
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 98%;
+    height: 35px;
+    padding-left: 10px;
+    font-size: 1vw;
+    color: #fff;
+    background-color: #303030;
+    border: none;
+    border-bottom: 2px solid #118ab2;
+}
+
+input:focus {
+    outline: none;
+}
+
+
+table{
+  width:100%;
+  table-layout: fixed;
+}
+.tbl-header{
+  background-color: #303030;
+  border: solid 1px rgba(0,0,0,0.4);
+  border-bottom: none;
+  color: #f2f2f2;
+
+ }
+.tbl-content{
+  height:70vh;
+  overflow-x:auto;
+  margin-top: 0px;
+  border: solid 1px rgba(0,0,0,0.4);
+  background-color: #ffffff;
+}
+th{
+  padding: 10px 10px;
+  text-align: left;
+  font-size: 1vw;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+td{
+    border-collapse: collapse;
+    border: none;
+  padding: 0px 5px;
+  text-align: left;
+  vertical-align:middle;
+  font-size: 1vw;
+  border-bottom: solid 1px rgba(0,0,0,0.2);
+}
+tr:nth-child(even) {
+background: #f2f2f2;
+}
+
+.cells {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: " ... "; 
+  letter-spacing: .025em;  
+}
+
+.producao td p {
+    width: 90%;
+    padding: 5px;
+    border-radius: 2px;
+    background-color: var(--clr_verde_bg);
+    color: #fff;
+    text-align: center;
+}
+.producao:hover,
+.producao:active {
+  background-color: rgba(40, 167, 69, 0.15);
+
+}
+.coletado td p {
+   width: 90%;
+    padding: 5px;
+    border-radius: 2px;
+    color: #fff;
+    background-color: var(--clr_azul_bg);   
+    text-align: center;
+}
+.coletado:hover,
+.coletado:active {
+   background-color: rgba(23, 162, 184, 0.15);
+}
+.cancelado td p {
+  width: 90%;
+    padding: 5px;
+    border-radius: 2px;
+    background-color: var(--clr_vermelho_bg);
+    color: #fff;
+    text-align: center;
+}
+.cancelado:hover,
+.cancelado:active {
+   background-color: rgba(220, 53, 69, 0.15);
+}
+.col_pedido a {
+  color: #121212;
+  /*text-decoration: none;*/
+
+}
+
+
+/*INICIO MODAL =======================*/
+
+section.modal {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000090;
+    z-index: 100;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+}
+
+section.modal div#modal-card {
+    background-color: #f2f2f2;
+    width: 70vw;
+    min-height: 95vh;
+    position: relative;
+    overflow: hidden;
+    border: solid 1px #5f6368;
+
+}
+
+section.modal div#modal-card div.modal-header {
+    text-align: center;
+    background-color: #303030;
+    color: #f2f2f2;
+    width: 100%;
+    display: inline-block;
+    font-size: 22px;
+}
+
+section.modal div#modal-card div.modal-header p {
+    margin: 0;
+}
+
+section.modal div#modal-card div.modal-header #sp_pedido {
+    font-size: medium;
+}
+
+section.modal div#modal-card a#fechar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: red;
+    text-decoration: none;
+    padding-right: 10px;
+    font-size: 28px;
+}
+
+section.modal div#modal-card div.modal-header .header_producao {
+    width: 98%;
+    color: var(--clr_verde_bg);
+}
+
+section.modal div#modal-card div.modal-header .header_coletado {
+    width: 98%;
+    color: var(--clr_azul_bg);
+}
+
+section.modal div#modal-card div.modal-header .header_cancelado {
+    width: 98%;
+    color: var(--clr_vermelho_bg);
+}
+
+
+
+section.modal div#modal-card div#div-cabecalho table#tb-cabecalho {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+section.modal div#modal-card div#div-cabecalho table#tb-cabecalho td.col_1 {
+    text-align: left;
+    width: 15%;
+    font-size: smaller;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+
+section.modal div#modal-card div#div-cabecalho table#tb-cabecalho td.col_2 {
+    font-size: smaller;
+    font-weight: 600;
+    text-align: left;
+    width: 55%;
+}
+
+section.modal div#modal-card div#div-cabecalho table#tb-cabecalho td.col_3 {
+    font-size: smaller;
+    text-align: right;
+    width: 15%;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+
+section.modal div#modal-card div#div-cabecalho table#tb-cabecalho td.col_4 {
+    font-size: smaller;
+    font-weight: 600;
+    text-align: left;
+    width: 15%;
+
+}
+
+/*-----------------------------------------------*/
+section.modal div#modal-card div#div-cabecalho,
+section.modal div#modal-card div#div-persianas,
+section.modal div#modal-card div#div-bandos,
+section.modal div#modal-card div#div-acessorios {
+    margin-bottom: 25px;
+    width: 100%;
+    padding-bottom: 25px;
+     border-bottom: 1px solid #5f6368;
+}
+
+section.modal div#modal-card div#div-persianas table#tb-persianas,
+section.modal div#modal-card div#div-bandos table#tb-bandos,
+section.modal div#modal-card div#div-acessorios table#tb-acessorios {
+    border-collapse: collapse;
+    font-size: small;
+    width: 100%;
+    text-align: left;
+    border-top: none;
+}
+
+section.modal div#modal-card div#div-persianas table#tb-persianas td.col_1 {
+    padding-left: 15px;
+
+
+}
+
+section.modal div#modal-card div#div-persianas table#tb-persianas td.header_persiana,
+section.modal div#modal-card div#div-bandos table#tb-bandos td.header_bando,
+section.modal div#modal-card div#div-acessorios table#tb-acessorios td.header_acessorio {
+    letter-spacing: 5px;
+    color: #303030;
+    text-align: center;
+    font-weight: 600;
+    padding: 0.5em 1em;
+}
+
+/*-------------------------------------------------*/
+.hide {
+    display: none;
+}
+
+/*-------------------------------------------------*/
+
+section.modal div#modal-card div#div-persianas table#tb-persianas .rows_per th,
+section.modal div#modal-card div#div-bandos table#tb-bandos .rows_ban th,
+section.modal div#modal-card div#div-acessorios table#tb-acessorios .rows_ace th {
+    font-weight: 600;
+    border-bottom: 1px solid #5f6368;
+    border-top: 1px solid #5f6368;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+
+section.modal div#modal-card div#div-cabecalho table#tb-cabecalho .rows_cab .cells,
+section.modal div#modal-card div#div-persianas table#tb-persianas .rows_per .cells,
+section.modal div#modal-card div#div-bandos table#tb-bandos .rows_ban .cells,
+section.modal div#modal-card div#div-acessorios table#tb-acessorios .rows_ace .cells {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+}
+
+
+
+/*FIM MODAL =======================*/

@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@200;400;600;900&display=swap');
+/*font-family: 'M PLUS 1', sans-serif;*/
+
+body, html {
+ font-family: 'M PLUS 1', sans-serif;
+ background-color: #303030;
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.box-form {  
+  color: #f2f2f2;   
+  width: 350px;
+  height: 480px;
+  border-radius: 10px;
+  background-color: #303030;
+  border: 1px solid #5f6368;
+}
+form {
+  text-align: center;
+}
+p {
+  color: #5f6368;
+}
+h1 {
+  font-size: 3rem;
+  letter-spacing: 5px;
+}
+
+.input-text {
+  padding-left: 10px;
+  letter-spacing: 2px;
+  font-size: 1.25rem;
+  height: 40px;
+  background-color: #303030;
+  border-radius: 10px;
+  color: #f2f2f2;  
+  border: 1px solid #5f6368;
+  margin-bottom: 20px;
+}
+
+.btn {
+  cursor:pointer;
+  width: 200px;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  height: 40px;
+  background-color: #303030;
+  border-radius: 10px;
+  color: #f2f2f2;  
+  border: 1px solid #5f6368;
+}
+
+input.btn[type="submit"]:hover, input.btn[type="submit"]:focus {
+    box-shadow: 0 0 0 0 rgba(60,64,67,.3),0 0 0 0 rgba(60,64,67,.15);
+    background-color: #118ab2;
+}
+input:focus{ outline: none; }
+
+#msg {
+  color: #f28482;
+  letter-spacing: 3px;
+  /*font-size: 1.25rem;*/
+}

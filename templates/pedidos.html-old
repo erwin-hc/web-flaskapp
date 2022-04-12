@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pedidos</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/navbar.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/pedidos.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <script src="{{ url_for('static',filename='js/pedidos.js') }}"></script>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <div class="topnav" id="myTopnav">
+        <a id="link_pedidos" href="{{ url_for('pedidos') }}">Pedidos</a>
+        <a id="link_romaneios" href="{{ url_for('romaneios') }}">Romaneios</a>
+        <a id="link_prontas" href="{{ url_for('prontas') }}">Peças Prontas</a>
+        <a id="link_sair" href="{{ url_for('index') }}">Sair</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa-solid fa-bars fa-xl"></i></a>
+    </div>
+
+    <section id="sec-pedidos">
+
+<div class="tbl-header">
+<div class="search">
+<input type="text" id="inputSearch" onkeyup="searchTableColumns()" placeholder="Pesquisar ...">
+</div>
+    <table  class="tbl-pedidos">
+        <thead>
+            <tr class="row_head">
+                <th width="10%">PEDIDO</th>
+                <th width="8%">DATA</th>
+                <th width="22%">NOME</th>
+                <th width="10%">NFe</th>
+                <th width="10%">PREVISÃO</th>
+                <th width="10%">TRANSP</th>
+                <th width="10%">QVOL</th>
+                <th width="10%">DT_COLETA</th>
+                <th width="10%">STATUS</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+        <div class="tbl-content">
+            <table id="tabelaDados">
+                    <tbody>
+                        {% for row in data %}
+                        <tr class="row_body">
+                            <td width="10%" class="cells col_pedido" data-columm="pedido">
+                                <a href='/pedidos/{{ row[9] }}' >{{ row[5] }}</a>
+                                <!-- target="_blank" -->
+                            </td>
+                            </td>
+                            <td width="8%" class="cells col_data" data-columm="data"> {{ row[1] |strftime }}</td>
+                            <td width="22%" class="cells col_nome" data-columm="nome"> {{ row[6] }}</td>
+                            <td width="10%" class="cells col_nfe" data-columm="nfe"> {{ row[7] }}</td>
+                            <td width="10%" class="cells col_previsao" data-columm="previsao"> {{ row[11] |strftime }}</td>
+                            <td width="10%" class="cells col_transp" data-columm="transp"> {{ row[3] }}</td>
+                            <td width="10%" class="cells col_vol" data-columm="vol"> {{ row[4] }}</td>
+                            <td width="10%" class="cells col_dt_coleta" data-columm="dt_coleta"> {{ row[10] |strftime }}</td>
+                            <td width="10%" class="cells col_status" data-columm="status">
+                                <p> {{ row[2] }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+            </table>        
+        </div>
+    </section>
+   
+<!-- --------------------------------------------------------------------------------------------------- -->
+<!-- modal itens pedido  -->
+
+    {% if np != undefined %}
+    <section class="modal is-active">
+        <div id="modal-card">
+
+        <div class="modal-header">       
+            <a id="fechar" href="{{ url_for('pedidos') }}"><i class="fa fa-times" aria-hidden="true"></i></a>
+            <p> {{ np[0][2] }} </p>  
+
+            {% if np[0][21] == 'PRODUCAO'%}
+            <hr class="modal-header header_producao">
+            {% elif np[0][21] == 'COLETADO' %}
+            <hr class="modal-header header_coletado">
+            {% elif np[0][21] == 'CANCELADO' %}
+            <hr class="modal-header header_cancelado">
+            {% endif %}    
+        </div>
+            
+            <div class="modal-body">
+            
+ <!-- DIV-CABECALHO ======================================================================================== -->
+        <div id="div-cabecalho">
+            <table id="tb-cabecalho">
+
+                <tr class="rows_cab">
+                    <td class="cells col_1">CLIENTE:</td>
+                    <td colspan="4" class="cells col_2"> {{ np[0][3] }} </td>
+                </tr>
+
+                <tr class="rows_cab">
+                    <td class="cells col_1">STATUS:</td>
+                    <td class="cells col_2"> {{ np[0][21] }} </td>
+
+                    <td class="cells col_3">DATA:</td>
+                    <td class="cells col_4">{{ np[0][1] |strftime }}</td>
+
+                </tr>
+
+                <tr class="rows_cab">
+                    <td class="cells col_1">NF-FAC:</td>
+                    <td class="cells col_2"> {{ np[0][4] }} </td>
+
+
+                    <td class="cells col_3">PREVISÃO:</td>
+                    <td class="cells col_4"> {{ np[0][7] |strftime }} </td>
+
+                </tr>
+
+                <tr class="rows_cab">
+                    <td class="cells col_1">NF-SAN:</td>
+                    {% if np[0][21] == 'PRODUCAO' %}
+                    <td class="cells col_2"> {{ np[0][20] }} </td>
+                    {% endif %}  
+
+                    {% if np[0][21] == 'COLETADO' %}
+                    <td class="cells col_2"> {{ np[0][20] }} </td>
+                    {% endif %}  
+
+                    {% if np[0][21] == 'CANCELADO' %}
+                    <td class="cells col_2">  </td>
+                    {% endif %}  
+
+
+                    <td class="cells col_3">REGISTRO:</td>
+                    <td class="cells col_4"> {{ np[0][0] }} </td>
+
+                </tr>
+
+            </table>
+        </div>
+             <!-- DIV-PERSIANAS ========================================================================== -->
+        <div id="div-persianas">
+            <table id="tb-persianas">
+                <thead>
+                    <tr>
+                        <td class="cells header_persiana" colspan="7"> PERSIANAS </td>
+                    </tr>
+
+                    <tr class="rows_per">
+                        <th class="cells col_1">Qtd:</th>
+                        <th class="cells col_2">Produto:</th>
+                        <th class="cells col_3">Largura</th>
+                        <th class="cells col_4">Altura</th>
+                        <th class="cells col_5">M2</th>
+                        <th class="cells col_6">Modelo</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_per">
+                    {% for row in np %}
+                    {% if row[19] == 'A' %}
+                    <tr class="rows_per">
+                        <td class="cells col_1"> {{'%0.2f'| format(row[8]|float)}}</td>
+                        <td class="cells col_2"> {{ row[9] }} </br> {{ row[10]}} </td>
+                        <td class="cells col_3"> {{'%0.2f'| format(row[11]|float)}}</td>
+                        <td class="cells col_4"> {{'%0.2f'| format(row[12]|float)}}</td>
+                        <td class="cells col_5"> {{'%0.2f'| format(row[13]|float)}}</td>
+                        <td class="cells col_6"> {{ row[15] }} </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- DIV-BANDOS ============================================================================= -->
+        <div id="div-bandos">
+            <table id="tb-bandos">
+                <thead>
+                    <tr>
+                        <td class="cells header_bando" colspan="7"> BANDÔS </td>
+                    </tr>
+
+                    <tr class="rows_ban">
+                        <th class="cells col_1">Qtd:</th>
+                        <th class="cells col_2">Produto:</th>
+                        <th class="cells col_3">Aba-Dir</th>
+                        <th class="cells col_4">Aba-Esq</th>
+                        <th class="cells col_5">Comprimento</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_ban">
+                    {% for row in np %}
+                    {% if row[19] == 'B' %}
+                    <tr class="rows_ban">
+                        <td class="cells col_1"> {{'%0.2f'| format(row[8]|float)}}</td>
+                        <td class="cells col_2"> {{ row[9] }} </td>
+                        <td class="cells col_3"> {{'%0.2f'| format(row[17]|float)}}</td>
+                        <td class="cells col_4"> {{'%0.2f'| format(row[18]|float)}}</td>
+                        <td class="cells col_5"> {{'%0.2f'| format(row[16]|float)}}</td>
+                        <!-- <td class="cells col_6"> {{ row[15] }} </td> -->
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- DIV-ACESSORIOS ========================================================================== -->
+        <div id="div-acessorios">
+            <table id="tb-acessorios">
+                <thead>
+                    <tr>
+                        <td class="cells header_acessorio" colspan="7"> ACESSÓRIOS </td>
+                    </tr>
+
+                    <tr class="rows_ace">
+                        <th class="cells col_1">Qtd:</th>
+                        <th class="cells col_2">Produto:</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_ace">
+                    {% for row in np %}
+                    {% if row[19] == 'C' %}
+                    <tr  class="rows_ace">
+                        <td class="cells col_1"> {{'%0.2f'| format(row[8]|float)}}</td>
+                        <td class="cells col_2"> {{ row[9] }} </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+
+
+
+
+            </div>
+        </div>        
+    </section>
+    {% endif %}  
+
+
+</body>
+
+<script type="text/javascript">
+producao()
+coletado()
+cancelado()
+vazio()
+zera_cancelado()
+zera_producao()
+zera_coletado()
+zera_cliente_retira()
+replace_jadlog()
+replace_expresso()
+replace_aceville()
+replace_fedex()
+
+
+</script>
+
+<script type="text/javascript">
+const div_per = document.getElementById("div-persianas");
+const div_ban = document.getElementById("div-bandos");
+const div_ace = document.getElementById("div-acessorios");
+
+const get_pers = document.querySelectorAll("#tbody_per tr").length;
+const get_ban = document.querySelectorAll("#tbody_ban tr").length;
+const get_ace = document.querySelectorAll("#tbody_ace tr").length;
+
+console.log(get_pers);
+console.log(get_ban);
+console.log(get_ace);
+
+function unhide() {
+div_per.classList.remove("hide");
+div_ban.classList.remove("hide");
+div_ace.classList.remove("hide");        
+};
+
+function hide() {
+if (get_pers == 0) { 
+div_per.classList.add("hide"); 
+}
+if (get_ban == 0) { 
+div_ban.classList.add("hide");
+}
+if (get_ace == 0) { 
+div_ace.classList.add("hide");
+}
+}
+
+unhide();
+hide();
+
+
+</script>
+
+</html>

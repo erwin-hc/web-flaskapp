@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@200;400;600;900&display=swap');
+/*font-family: 'M PLUS 1', sans-serif;*/
+
+:root {
+--clr_azul_bg: #17a2b8;
+--clr_verde_bg: #28a745 ;
+--clr_vermelho_bg: #dc3545;
+
+}
+
+body, html {
+  font-family: 'M PLUS 1', sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  color: #303030;
+  font-weight: 300;
+  background-color: #f2f2f2;
+}
+section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 50px;
+}
+
+#sp_pedido {
+  font-size: 1.1vw;
+}
+
+#div-cabecalho {
+  width: 100%;
+  margin: 50px 50px;
+  margin-bottom: 0;
+}
+
+#tb-cabecalho {
+  border-collapse: collapse;
+  padding: 0.5em 0.5em;
+  width: 100%;
+  border:  1px solid black;
+  font-size: 1vw;
+  border-bottom: none;
+}
+
+#tb-cabecalho tr:first-child {
+  font-size: 2vw;
+  font-weight: 600; 
+}
+
+#tb-cabecalho td.col_1 {
+  text-align: left;
+  padding-left: 25px;
+  width: 15%;
+}
+
+#tb-cabecalho td.col_2 {
+  font-size: 1.25vw;
+  text-align: left;
+  width: 55%;
+}
+
+#tb-cabecalho td.col_3 {
+  text-align: right;
+  width: 15%;
+
+}
+
+#tb-cabecalho td.col_4 {
+  font-size: 1.25vw;
+  text-align: left;
+  width: 15%;
+
+}
+
+/*-----------------------------------------------*/
+#div-persianas,
+#div-bandos,
+#div-acessorios {
+  width: 100%;
+/*  margin: 0px 50px;*/
+
+}
+#tb-persianas,
+#tb-bandos,
+#tb-acessorios {
+  border-collapse: collapse;
+  padding: 0.5em 0.5em;
+  width: 100%;
+  border:  1px solid black;
+  font-size: 1vw;
+  text-align: left;
+  border-top: none;
+}
+#tb-cabecalho {
+   border-bottom:  1px solid black;
+}
+
+.header_persiana,
+.header_bando,
+.header_acessorio {
+  background-color: #303030;
+  color: #f2f2f2;
+  font-size: 2vw;
+  text-align: center;
+}
+
+/*-------------------------------------------------*/
+.hide {
+  display: none;
+}
+/*-------------------------------------------------*/
+
+.rows_per th,
+.rows_ban th,
+.rows_ace th {
+  padding: 0.5em 0.5em;
+  font-weight: 600;
+  border-bottom: 1px solid black;
+  
+}
+
+.rows_cab .cells,
+.rows_per .cells,
+.rows_ban .cells,
+.rows_ace .cells {
+  padding: 0.5em 0.5em;
+  font-weight: 400;
+  
+}
+
+
+
+
+
